@@ -4,17 +4,35 @@
  */
 package DangNhap;
 
+import Menu.MenuAdminUI;
+import Menu.MenuNhanVienUI;
+import Object.TaiKhoanObject;
+import RunProject.ConnectDB;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MD-03092021
  */
 public class DangNhapUI extends javax.swing.JFrame {
 
+    ConnectDB connect = new ConnectDB();
+
     /**
      * Creates new form DangNhapUI
      */
-    public DangNhapUI() {
+    public DangNhapUI() throws SQLException {
         initComponents();
+        RadioButton_NhanVien.setActionCommand("nhanvien");
+        RadioButton_QuanLy.setActionCommand("quanly");
     }
 
     /**
@@ -26,6 +44,7 @@ public class DangNhapUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_quyen = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -34,9 +53,10 @@ public class DangNhapUI extends javax.swing.JFrame {
         tfPassword = new javax.swing.JTextField();
         tfUserName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cbQuyen = new javax.swing.JComboBox<>();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
+        RadioButton_NhanVien = new javax.swing.JRadioButton();
+        RadioButton_QuanLy = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,8 +102,6 @@ public class DangNhapUI extends javax.swing.JFrame {
 
         jLabel4.setText("Mật khẩu");
 
-        cbQuyen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnDangNhap.setBackground(new java.awt.Color(99, 80, 99));
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +118,18 @@ public class DangNhapUI extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup_quyen.add(RadioButton_NhanVien);
+        RadioButton_NhanVien.setSelected(true);
+        RadioButton_NhanVien.setText("Nhân viên");
+        RadioButton_NhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioButton_NhanVienActionPerformed(evt);
+            }
+        });
+
+        buttonGroup_quyen.add(RadioButton_QuanLy);
+        RadioButton_QuanLy.setText("quản lý");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -114,15 +144,18 @@ public class DangNhapUI extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(RadioButton_NhanVien)
+                                .addGap(18, 18, 18)
+                                .addComponent(RadioButton_QuanLy))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)
                         .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +169,10 @@ public class DangNhapUI extends javax.swing.JFrame {
                     .addComponent(tfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RadioButton_NhanVien)
+                    .addComponent(RadioButton_QuanLy))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,12 +212,50 @@ public class DangNhapUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tfUserNameActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
+        String taiKhoan = tfUserName.getText();
+        String matKhau = tfPassword.getText();
+        String quyen = buttonGroup_quyen.getSelection().getActionCommand();
+
+        //check tai khoan mat khau khong trong
+        if (taiKhoan.isEmpty() || matKhau.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Tên dăng nhập hoặc mật khẩu không được trống");
+        }
+
+        //check tai khoan ton tai
+        String check = "";
+        ArrayList<TaiKhoanObject> dsTaiKhoan = connect.dsTaiKhoan();
+        for (TaiKhoanObject tk : dsTaiKhoan) {
+            if (tk.getTenDangNhap().equalsIgnoreCase(taiKhoan)
+                    && tk.getMatKhau().equals(matKhau)
+                    && tk.getQuyen().equals(quyen)) {
+                check = quyen;
+                break;
+            }
+        }
+        if (check.equals("nhanvien")) {
+            MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
+            menuNhanVienUI.setVisible(true);
+            menuNhanVienUI.pack();
+            this.dispose();
+        } else if (check.equals("quanly")) {
+            MenuAdminUI menuAdminUI = new MenuAdminUI();
+            menuAdminUI.setVisible(true);
+            menuAdminUI.pack();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác !");
+            tfUserName.setText("");
+            tfPassword.setText("");
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
+        System.exit(1);
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void RadioButton_NhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButton_NhanVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RadioButton_NhanVienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,9 +293,11 @@ public class DangNhapUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton RadioButton_NhanVien;
+    private javax.swing.JRadioButton RadioButton_QuanLy;
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JComboBox<String> cbQuyen;
+    private javax.swing.ButtonGroup buttonGroup_quyen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
