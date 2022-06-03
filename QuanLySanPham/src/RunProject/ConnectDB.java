@@ -26,7 +26,7 @@ public class ConnectDB {
     Statement st = null;
     ResultSet rs = null;
  
-    public ConnectDB(){
+    public ConnectDB() throws ClassNotFoundException{
  
         String URL = "jdbc:mysql://127.0.0.1:3306/quanlysanpham"; 
         String USERNAME = "root";
@@ -81,7 +81,7 @@ public class ConnectDB {
                 sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
                 sp.setDonViTinh(rs.getInt("DonViTinh"));
                 sp.setSoLuong(rs.getInt("SoLuong"));
-                sp.setDonGia(sr.getInt("DonGia"));
+                sp.setDonGia(rs.getInt("DonGia"));
                 sp.setKichCo(rs.getString("KichCo"));
                 sp.setMoTa(rs.getString("MoTa"));
                 dsSanPham.add(sp);

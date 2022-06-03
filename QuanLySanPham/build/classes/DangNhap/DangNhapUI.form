@@ -106,14 +106,14 @@
                               <Component id="jLabel3" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfUserName" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="tfPassword" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tfUserName" pref="180" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="RadioButton_NhanVien" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="RadioButton_QuanLy" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="PasswordField" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -137,8 +137,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfPassword" pref="30" max="32767" attributes="0"/>
-                      <Component id="jLabel4" max="32767" attributes="0"/>
+                      <Component id="jLabel4" pref="30" max="32767" attributes="0"/>
+                      <Component id="PasswordField" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -166,11 +166,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Quy&#x1ec1;n"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfPassword">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPasswordActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfUserName">
           <Events>
@@ -223,6 +218,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="qu&#x1ea3;n l&#xfd;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="PasswordField">
         </Component>
       </SubComponents>
     </Container>
