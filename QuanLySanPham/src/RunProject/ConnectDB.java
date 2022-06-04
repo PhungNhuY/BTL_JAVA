@@ -194,16 +194,16 @@ public class ConnectDB {
         }
         return false;
     }
-    public boolean xoaSanPham(int ma){
+    public void xoaSanPham(int ma){
         try{
             String sql="delete from sanpham where MaSanPham="+ma;
             st=conn.createStatement();
             st.executeUpdate(sql);
-            return true;
+            
         }
         catch(SQLException ex){
         }
-        return false;
+        
     }
    
 }

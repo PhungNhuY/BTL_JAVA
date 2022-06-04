@@ -15,9 +15,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,28 +31,17 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
     ArrayList<DanhMucObject> listDM = connectDB.dsDanhMuc();
     ArrayList<SanPhamObject> listSP = connectDB.dsSanPham();
 
-    public QuanLySanPhamUI() {
+    public  QuanLySanPhamUI() {
         initComponents();
 
         loadTable();
 
         final DefaultComboBoxModel DMModel = (DefaultComboBoxModel) cbDanhMuc.getModel();
         for (DanhMucObject dm : listDM) {
-
             DMModel.addElement(dm.getTenDanhMuc());
         }
         cbDanhMuc = new JComboBox(DMModel);
         cbDanhMuc.setSelectedIndex(0);
-//        mytable.addMouseListener(new MouseAdapter() {
-//            public void mousePressed(MouseEvent mouseEvent) {
-//                JTable table = (JTable) mouseEvent.getSource();
-//                Point point = mouseEvent.getPoint();
-//                int row = table.rowAtPoint(point);
-//                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-//                    // your valueChanged overridden method 
-//                }
-//            }
-//        });
         tbSanPham.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent mouseEvent) {
 
@@ -70,6 +56,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
                 String moTa = (String) tbSanPham.getModel().getValueAt(row, 7);
 //                tfMaHoaDon.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
                 XemChiTietSanPham xem = new XemChiTietSanPham(tenSanPham, maDanhMuc, donViTinh, soLuong, donGia, kichCo, moTa, listDM);
+
                 if (mouseEvent.getClickCount() == 2) {
                     xem.setVisible(true);
                     xem.pack();
@@ -349,6 +336,14 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // SanPhamObject a=tbSanPham.getSelectedRows(tbSanPham.getSelectedRow());
         int row = tbSanPham.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(
+                    panel,
+                    "Bạn chưa chọn sản phẩm nào để sửa",
+                    "Lỗi",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         int maSanPham = (int) tbSanPham.getModel().getValueAt(row, 0);
         String tenSanPham = (String) tbSanPham.getModel().getValueAt(row, 1);
         int maDanhMuc = (int) tbSanPham.getModel().getValueAt(row, 2);
@@ -357,6 +352,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
         int donGia = (int) tbSanPham.getModel().getValueAt(row, 5);
         String kichCo = (String) tbSanPham.getModel().getValueAt(row, 6);
         String moTa = (String) tbSanPham.getModel().getValueAt(row, 7);
+
         SuaSanPham x = new SuaSanPham(maSanPham, tenSanPham, maDanhMuc, donViTinh, soLuong, donGia, kichCo, moTa, listDM);
         x.setVisible(true);
 
@@ -367,19 +363,28 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int row = tbSanPham.getSelectedRow();
-        int maSanPham = (int) tbSanPham.getModel().getValueAt(row, 0);
-
-        if (connectDB.xoaSanPham(maSanPham) == true) {
-
-            JOptionPane.showMessageDialog(null, "Xóa thành công");
-            loadTable();
-        } else {
+        if (row == -1) {
             JOptionPane.showMessageDialog(
                     panel,
-                    "Xóa thất bại",
+                    "Bạn chưa chọn sản phẩm nào để xóa",
                     "Lỗi",
                     JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
+
+        int maSanPham = (int) tbSanPham.getModel().getValueAt(row, 0);
+        String tenSanPham = (String) tbSanPham.getModel().getValueAt(row, 1);
+        int n = JOptionPane.showConfirmDialog(
+                panel,
+                "Bạn có chắc chắn muốn xóa " + tenSanPham,
+                "Alert",
+                JOptionPane.YES_NO_OPTION);
+        if (n == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Xóa thành công");
+            connectDB.xoaSanPham(maSanPham);
+            loadTable();
+        }
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoMoiActionPerformed

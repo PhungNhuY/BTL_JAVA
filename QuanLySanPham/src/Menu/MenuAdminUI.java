@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Menu;
+import QuanLiSanPham.QuanLySanPhamUI;
 
 /**
  *
@@ -74,6 +75,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         btnQLSP.setBackground(new java.awt.Color(188, 210, 112));
         btnQLSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLSP.setText("QUẢN LÍ SẢN PHẨM");
+        btnQLSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSPActionPerformed(evt);
+            }
+        });
 
         btnThongKe.setBackground(new java.awt.Color(188, 210, 112));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -106,10 +112,10 @@ public class MenuAdminUI extends javax.swing.JFrame {
                     .addComponent(btnQLDM, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnQLSP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnQLNV, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(btnQLNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,6 +136,15 @@ public class MenuAdminUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnQLSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSPActionPerformed
+        // TODO add your handling code here:
+        QuanLySanPhamUI QLSP=new QuanLySanPhamUI();
+        QLSP.setVisible(true);
+        QLSP.pack();
+        this.dispose();
+                
+    }//GEN-LAST:event_btnQLSPActionPerformed
 
     /**
      * @param args the command line arguments
