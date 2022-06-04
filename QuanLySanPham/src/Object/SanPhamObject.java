@@ -12,12 +12,34 @@ public class SanPhamObject {
     private int maSanPham;
     private String tenSanPham;
     private int maDanhMuc;
-    private int donViTinh;
+    private String donViTinh;
     private int soLuong;
     private int donGia;
     private String kichCo;
     private String moTa;
 
+    public SanPhamObject(int maSanPham, String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa) {
+        this.maSanPham = maSanPham;
+        this.tenSanPham = tenSanPham;
+        this.maDanhMuc = maDanhMuc;
+        this.donViTinh = donViTinh;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.kichCo = kichCo;
+        this.moTa = moTa;
+    }
+
+    public SanPhamObject(String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa) {
+        this.tenSanPham = tenSanPham;
+        this.maDanhMuc = maDanhMuc;
+        this.donViTinh = donViTinh;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.kichCo = kichCo;
+        this.moTa = moTa;
+    }
+    public SanPhamObject(){};
+    
     public int getMaSanPham() {
         return maSanPham;
     }
@@ -42,11 +64,11 @@ public class SanPhamObject {
         this.maDanhMuc = maDanhMuc;
     }
 
-    public int getDonViTinh() {
+    public String getDonViTinh() {
         return donViTinh;
     }
 
-    public void setDonViTinh(int donViTinh) {
+    public void setDonViTinh(String donViTinh) {
         this.donViTinh = donViTinh;
     }
 

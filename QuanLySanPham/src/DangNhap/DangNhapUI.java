@@ -28,6 +28,7 @@ public class DangNhapUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DangNhapUI
+     * @throws java.sql.SQLException
      */
     public DangNhapUI() throws SQLException {
         initComponents();
@@ -232,20 +233,24 @@ public class DangNhapUI extends javax.swing.JFrame {
                 break;
             }
         }
-        if (check.equals("nhanvien")) {
-            MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
-            menuNhanVienUI.setVisible(true);
-            menuNhanVienUI.pack();
-            this.dispose();
-        } else if (check.equals("quanly")) {
-            MenuAdminUI menuAdminUI = new MenuAdminUI();
-            menuAdminUI.setVisible(true);
-            menuAdminUI.pack();
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác !");
-            tfUserName.setText("");
-            tfPassword.setText("");
+        switch (check) {
+            case "nhanvien" -> {
+                MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
+                menuNhanVienUI.setVisible(true);
+                menuNhanVienUI.pack();
+                this.dispose();
+            }
+            case "quanly" -> {
+                MenuAdminUI menuAdminUI = new MenuAdminUI();
+                menuAdminUI.setVisible(true);
+                menuAdminUI.pack();
+                this.dispose();
+            }
+            default -> {
+                    JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác !");
+                    tfUserName.setText("");
+                    tfPassword.setText("");
+            }
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -285,9 +290,11 @@ public class DangNhapUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new DangNhapUI().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

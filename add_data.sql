@@ -35,3 +35,4 @@ insert into sanpham(TenSanPham, MaDanhMuc, DonViTinh, SoLuong, DonGia, KichCo, M
 values ("Quần cộc đen",3, "chiếc", 5, 120000, "M", "");
 insert into sanpham(TenSanPham, MaDanhMuc, DonViTinh, SoLuong, DonGia, KichCo, MoTa)
 values ("quần bò GAP",4, "chiếc", 0, 100000, "L", "");
+select * from danhmuc;

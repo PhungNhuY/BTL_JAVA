@@ -10,21 +10,22 @@ import Object.HoaDon_SanPhamObject;
 import Object.SanPhamObject;
 import Object.TaiKhoanObject;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author nhu y phung
  */
 public class ConnectDB {
-    Connection conn = null;
-    Statement st = null;
-    ResultSet rs = null;
+    public Connection conn = null;
+    public Statement st = null;
+    public ResultSet rs = null;
  
     public ConnectDB(){
  
@@ -33,13 +34,17 @@ public class ConnectDB {
         String PASSWORD = "admin";
         // trong đó : 127.0.0.1:3306/quanlysanpham là tên và đường dẫn tới CSDL.
         try {
-            // Nạp driver cho việc kết nối
-            Class.forName("com.mysql.jdbc.Driver"); 
+            try {
+                // Nạp driver cho việc kết nối
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.print("Kết nối thành công\n");
         } catch (SQLException e) {
             System.out.print("Kết nối thất bại\n");
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
     
@@ -62,8 +67,7 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsTKhoan;
     }
@@ -79,17 +83,17 @@ public class ConnectDB {
                 sp.setMaSanPham(rs.getInt("MaSanPham"));
                 sp.setTenSanPham(rs.getString("TenSanPham"));
                 sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
-                sp.setDonViTinh(rs.getInt("DonViTinh"));
+                sp.setDonViTinh(rs.getString("DonViTinh"));
                 sp.setSoLuong(rs.getInt("SoLuong"));
-                sp.setDonGia(sr.getInt("DonGia"));
+                sp.setDonGia(rs.getInt("DonGia"));
                 sp.setKichCo(rs.getString("KichCo"));
                 sp.setMoTa(rs.getString("MoTa"));
                 dsSanPham.add(sp);
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
+            
         }
         return dsSanPham;
     }
@@ -109,8 +113,7 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsHoaDon_SanPham;
     }
@@ -132,8 +135,7 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsHoaDon;
     }
@@ -141,7 +143,7 @@ public class ConnectDB {
     public ArrayList<DanhMucObject> dsDanhMuc(){
         ArrayList<DanhMucObject> dsDanhMuc = new ArrayList<DanhMucObject>();
         try{
-            String sql="SELECT * FROM hoadon";
+            String sql="SELECT * FROM danhmuc";
             st=conn.createStatement();
             rs=st.executeQuery(sql);
             while(rs.next()){
@@ -153,9 +155,55 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsDanhMuc;
     }
+    public boolean themSanPham(SanPhamObject sp){
+        
+        try{
+            String sql="INSERT INTO sanpham(TenSanPham, MaDanhMuc, DonViTinh, SoLuong, DonGia, KichCo, MoTa) " +
+            "VALUES('"+sp.getTenSanPham()+"'," +
+            ""+sp.getMaDanhMuc()+"," +
+            "'"+sp.getDonViTinh()+"'," +
+            ""+sp.getSoLuong()+"," +
+            ""+sp.getDonGia()+"," +      
+            "'"+sp.getKichCo()+"'," +
+            "'"+sp.getMoTa()+"')";
+            System.out.println(sql);
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }catch(SQLException ex){
+        }
+        return false;
+    }
+    public boolean suaSanPham(SanPhamObject sp){
+        try{
+            String sql="UPDATE sanpham SET TenSanPham='"+sp.getTenSanPham()+"',"
+                    +"SoLuong="+sp.getSoLuong()+","
+                    +"DonGia="+sp.getDonGia()+","
+                    +"KichCo='"+sp.getKichCo()+"',"
+                    +"MoTa='"+sp.getMoTa()+"',"
+                    + "DonViTinh='"+sp.getDonViTinh()+"' WHERE MaSanPham='"+sp.getMaSanPham()+"'";
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }
+        catch(SQLException ex){
+        }
+        return false;
+    }
+    public boolean xoaSanPham(int ma){
+        try{
+            String sql="delete from sanpham where MaSanPham="+ma;
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }
+        catch(SQLException ex){
+        }
+        return false;
+    }
+   
 }
