@@ -35,3 +35,21 @@ insert into sanpham(TenSanPham, MaDanhMuc, DonViTinh, SoLuong, DonGia, KichCo, M
 values ("Quần cộc đen",3, "chiếc", 5, 120000, "M", "");
 insert into sanpham(TenSanPham, MaDanhMuc, DonViTinh, SoLuong, DonGia, KichCo, MoTa)
 values ("quần bò GAP",4, "chiếc", 0, 100000, "L", "");
+
+-- hoa don
+insert into hoadon(TenKhachHang, SoDienThoai, ThoiGianXuat, MaTaiKhoan, TongTien)
+values ("Khach Hang 1", "123456789", "2022-06-04", 1, 100000);
+insert into hoadon(TenKhachHang, SoDienThoai, ThoiGianXuat, MaTaiKhoan, TongTien)
+values ("Khach Hang 1", "123456789", "2022-06-04", 1, 150000);
+insert into hoadon(TenKhachHang, SoDienThoai, ThoiGianXuat, MaTaiKhoan, TongTien)
+values ("khach 2", "123457890", "2022-06-03", 2, 0);
+
+-- hoadon_sanpham
+insert into hoadon_sanpham(MaHoaDon, MaSanPham, SoLuong)
+values (1, 1, 1);
+insert into hoadon_sanpham(MaHoaDon, MaSanPham, SoLuong)
+values (1, 2, 1);
+insert into hoadon_sanpham(MaHoaDon, MaSanPham, SoLuong)
+values (2, 4, 1);
+insert into hoadon_sanpham(MaHoaDon, MaSanPham, SoLuong)
+values (2, 5, 1);

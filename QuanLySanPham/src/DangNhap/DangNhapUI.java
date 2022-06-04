@@ -204,7 +204,7 @@ public class DangNhapUI extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         String taiKhoan = tfUserName.getText();
-        String matKhau = PasswordField.getSelectedText();
+        String matKhau = PasswordField.getText();
         String quyen = buttonGroup_quyen.getSelection().getActionCommand();
 
         //check tai khoan mat khau khong trong

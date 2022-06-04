@@ -12,11 +12,20 @@ public class SanPhamObject {
     private int maSanPham;
     private String tenSanPham;
     private int maDanhMuc;
-    private int donViTinh;
+    private String donViTinh;
     private int soLuong;
     private int donGia;
     private String kichCo;
     private String moTa;
+    private int soLuongBan;
+
+    public int getSoLuongBan() {
+        return soLuongBan;
+    }
+
+    public void setSoLuongBan(int soLuongBan) {
+        this.soLuongBan = soLuongBan;
+    }
 
     public int getMaSanPham() {
         return maSanPham;
@@ -42,11 +51,11 @@ public class SanPhamObject {
         this.maDanhMuc = maDanhMuc;
     }
 
-    public int getDonViTinh() {
+    public String getDonViTinh() {
         return donViTinh;
     }
 
-    public void setDonViTinh(int donViTinh) {
+    public void setDonViTinh(String donViTinh) {
         this.donViTinh = donViTinh;
     }
 
