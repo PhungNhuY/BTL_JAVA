@@ -8,6 +8,8 @@ import Menu.MenuAdminUI;
 import Menu.MenuNhanVienUI;
 import Object.TaiKhoanObject;
 import RunProject.ConnectDB;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -220,6 +222,15 @@ public class DangNhapUI extends javax.swing.JFrame {
                     && tk.getMatKhau().equals(matKhau)
                     && tk.getQuyen().equals(quyen)) {
                 check = quyen;
+                try {
+                    FileWriter myWriter = new FileWriter("MaTaiKhoan.txt");
+                    myWriter.write(String.valueOf(tk.getMaTaiKhoan()));
+                    myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
                 break;
             }
         }
