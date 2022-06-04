@@ -13,6 +13,21 @@ public class DanhMucObject {
     private String tenDanhMuc;
     private String moTa;
 
+    public DanhMucObject(int maDanhMuc, String tenDanhMuc, String moTa) {
+        this.maDanhMuc = maDanhMuc;
+        this.tenDanhMuc = tenDanhMuc;
+        this.moTa = moTa;
+    }
+
+    public DanhMucObject()
+    {
+        
+    }
+    public DanhMucObject(String tenDanhMuc, String moTa) {
+        this.tenDanhMuc = tenDanhMuc;
+        this.moTa = moTa;
+    }
+
     public int getMaDanhMuc() {
         return maDanhMuc;
     }

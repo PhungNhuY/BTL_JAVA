@@ -24,12 +24,13 @@ import java.util.logging.Logger;
  */
 public class DangNhapUI extends javax.swing.JFrame {
 
-    ConnectDB connect = new ConnectDB();
+    ConnectDB connect;
 
     /**
      * Creates new form DangNhapUI
      */
     public DangNhapUI() throws SQLException {
+        this.connect = new ConnectDB();
         initComponents();
         RadioButton_NhanVien.setActionCommand("nhanvien");
         RadioButton_QuanLy.setActionCommand("quanly");
@@ -287,7 +288,11 @@ public class DangNhapUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DangNhapUI().setVisible(true);
+                try {
+                    new DangNhapUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

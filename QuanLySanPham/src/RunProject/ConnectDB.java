@@ -10,36 +10,40 @@ import Object.HoaDon_SanPhamObject;
 import Object.SanPhamObject;
 import Object.TaiKhoanObject;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author nhu y phung
  */
 public class ConnectDB {
-    Connection conn = null;
-    Statement st = null;
-    ResultSet rs = null;
+    public Connection conn = null;
+    public Statement st = null;
+    public ResultSet rs = null;
  
-    public ConnectDB(){
+    public ConnectDB() {
  
         String URL = "jdbc:mysql://127.0.0.1:3306/quanlysanpham"; 
         String USERNAME = "root";
         String PASSWORD = "admin";
         // trong đó : 127.0.0.1:3306/quanlysanpham là tên và đường dẫn tới CSDL.
         try {
-            // Nạp driver cho việc kết nối
-            Class.forName("com.mysql.jdbc.Driver"); 
+            try {
+                // Nạp driver cho việc kết nối
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.print("Kết nối thành công\n");
         } catch (SQLException e) {
             System.out.print("Kết nối thất bại\n");
-            e.printStackTrace();
         }
     }
     
@@ -62,14 +66,13 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsTKhoan;
     }
     
     public ArrayList<SanPhamObject> dsSanPham(){
-        ArrayList<SanPhamObject> dsSanPham = new ArrayList<SanPhamObject>();
+        ArrayList<SanPhamObject> dsSanPham = new ArrayList<>();
         try{
             String sql="SELECT * FROM sanpham";
             st=conn.createStatement();
@@ -81,21 +84,20 @@ public class ConnectDB {
                 sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
                 sp.setDonViTinh(rs.getInt("DonViTinh"));
                 sp.setSoLuong(rs.getInt("SoLuong"));
-                sp.setDonGia(sr.getInt("DonGia"));
+                sp.setDonGia(rs.getInt("DonGia"));
                 sp.setKichCo(rs.getString("KichCo"));
                 sp.setMoTa(rs.getString("MoTa"));
                 dsSanPham.add(sp);
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsSanPham;
     }
     
     public ArrayList<HoaDon_SanPhamObject> dsHoaDon_SanPham(){
-        ArrayList<HoaDon_SanPhamObject> dsHoaDon_SanPham = new ArrayList<HoaDon_SanPhamObject>();
+        ArrayList<HoaDon_SanPhamObject> dsHoaDon_SanPham = new ArrayList<>();
         try{
             String sql="SELECT * FROM hoadon_sanpham";
             st=conn.createStatement();
@@ -109,14 +111,13 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsHoaDon_SanPham;
     }
     
     public ArrayList<HoaDonObject> dsHoaDon(){
-        ArrayList<HoaDonObject> dsHoaDon = new ArrayList<HoaDonObject>();
+        ArrayList<HoaDonObject> dsHoaDon = new ArrayList<>();
         try{
             String sql="SELECT * FROM hoadon";
             st=conn.createStatement();
@@ -132,16 +133,15 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsHoaDon;
     }
     
     public ArrayList<DanhMucObject> dsDanhMuc(){
-        ArrayList<DanhMucObject> dsDanhMuc = new ArrayList<DanhMucObject>();
+        ArrayList<DanhMucObject> dsDanhMuc = new ArrayList<>();
         try{
-            String sql="SELECT * FROM hoadon";
+            String sql="SELECT * FROM danhmuc";
             st=conn.createStatement();
             rs=st.executeQuery(sql);
             while(rs.next()){
@@ -153,9 +153,46 @@ public class ConnectDB {
             }
             rs.close();
         }
-        catch(Exception ex){
-            ex.printStackTrace();
+        catch(SQLException ex){
         }
         return dsDanhMuc;
     }
+    public boolean themDanhMuc(DanhMucObject dm){
+        
+        try{
+            String sql="INSERT INTO danhmuc(TenDanhMuc, MoTa) " +
+            "VALUES('"+dm.getTenDanhMuc()+"'," +
+            "'"+dm.getMoTa()+"')";
+            System.out.println(sql);
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }catch(SQLException ex){
+        }
+        return false;
+    }
+    public boolean suaDanhMuc(DanhMucObject dm){
+        try{
+            String sql="UPDATE danhmuc SET TenDanhMuc='"+dm.getTenDanhMuc()+"',MoTa='"+dm.getMoTa()+"' WHERE MaDanhMuc="+dm.getMaDanhMuc();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }
+        catch(SQLException ex){
+        }
+        return false;
+    }
+    public boolean xoaDanhMuc(int ma){
+        try{
+            String sql="delete from danhmuc where MaDanhMuc="+ma;
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }
+        catch(SQLException ex){
+            
+        }
+        return false;
+    }
+    
 }
