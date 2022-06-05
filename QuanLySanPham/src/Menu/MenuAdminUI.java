@@ -4,7 +4,10 @@
  */
 package Menu;
 import QuanLiDanhMuc.QuanLyDanhMucUI;
+import QuanLiNhanVien.QuanLyNhanVienUI;
 import QuanLiSanPham.QuanLySanPhamUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,6 +75,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         btnQLNV.setBackground(new java.awt.Color(188, 210, 112));
         btnQLNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLNV.setText("QUẢN LÍ NHÂN VIÊN");
+        btnQLNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLNVActionPerformed(evt);
+            }
+        });
 
         btnQLSP.setBackground(new java.awt.Color(188, 210, 112));
         btnQLSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -159,6 +167,18 @@ public class MenuAdminUI extends javax.swing.JFrame {
         QLDM.pack();
         this.dispose();
     }//GEN-LAST:event_btnQLDMActionPerformed
+
+    private void btnQLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNVActionPerformed
+        try {
+            // TODO add your handling code here:
+            QuanLyNhanVienUI QLNV=new QuanLyNhanVienUI();
+            QLNV.setVisible(true);
+            QLNV.pack();
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnQLNVActionPerformed
 
     /**
      * @param args the command line arguments

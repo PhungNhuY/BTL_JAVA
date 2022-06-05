@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Object;
+
 import java.sql.Date;
+
 /**
  *
  * @author nhu y phung
@@ -14,8 +16,30 @@ public class TaiKhoanObject {
     private String matKhau;
     private String hoTen;
     private String SoDienThoai;
-    private Date ngaySinh; 
+    private String ngaySinh; 
     private String quyen;
+
+    public TaiKhoanObject(int maTaiKhoan, String tenDangNhap, String matKhau, String hoTen, String SoDienThoai, String ngaySinh, String quyen) {
+        this.maTaiKhoan = maTaiKhoan;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.SoDienThoai = SoDienThoai;
+        this.ngaySinh = ngaySinh;
+        this.quyen = quyen;
+    }
+
+    public TaiKhoanObject(String tenDangNhap, String matKhau, String hoTen, String SoDienThoai, String ngaySinh, String quyen) {
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.SoDienThoai = SoDienThoai;
+        this.ngaySinh = ngaySinh;
+        this.quyen = quyen;
+    }
+
+    public TaiKhoanObject() {
+    }
 
     public void setMaTaiKhoan(int maTaiKhoan) {
         this.maTaiKhoan = maTaiKhoan;
@@ -57,11 +81,11 @@ public class TaiKhoanObject {
         this.SoDienThoai = SoDienThoai;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
