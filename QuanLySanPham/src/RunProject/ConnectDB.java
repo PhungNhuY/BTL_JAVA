@@ -159,6 +159,31 @@ public class ConnectDB {
         }
         return dsDanhMuc;
     }
+    public boolean themDanhMuc(DanhMucObject dm){
+        
+        try{
+            String sql="INSERT INTO danhmuc(TenDanhMuc, MoTa) " +
+            "VALUES('"+dm.getTenDanhMuc()+"'," +
+            "'"+dm.getMoTa()+"')";
+            System.out.println(sql);
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }catch(SQLException ex){
+        }
+        return false;
+    }
+    public boolean suaDanhMuc(DanhMucObject dm){
+        try{
+            String sql="UPDATE danhmuc SET TenDanhMuc='"+dm.getTenDanhMuc()+"',MoTa='"+dm.getMoTa()+"' WHERE MaDanhMuc="+dm.getMaDanhMuc();
+            st=conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        }
+        catch(SQLException ex){
+        }
+        return false;
+    }
     public boolean themSanPham(SanPhamObject sp){
         
         try{

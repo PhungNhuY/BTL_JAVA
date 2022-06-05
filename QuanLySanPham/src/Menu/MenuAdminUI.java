@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Menu;
+import QuanLiDanhMuc.QuanLyDanhMucUI;
 import QuanLiSanPham.QuanLySanPhamUI;
 
 /**
@@ -88,6 +89,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         btnQLDM.setBackground(new java.awt.Color(188, 210, 112));
         btnQLDM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLDM.setText("QUẢN LÍ DANH MỤC");
+        btnQLDM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLDMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,6 +151,14 @@ public class MenuAdminUI extends javax.swing.JFrame {
         this.dispose();
                 
     }//GEN-LAST:event_btnQLSPActionPerformed
+
+    private void btnQLDMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLDMActionPerformed
+        // TODO add your handling code here:
+        QuanLyDanhMucUI QLDM=new QuanLyDanhMucUI();
+        QLDM.setVisible(true);
+        QLDM.pack();
+        this.dispose();
+    }//GEN-LAST:event_btnQLDMActionPerformed
 
     /**
      * @param args the command line arguments
