@@ -247,6 +247,7 @@ public class ConnectDB {
         }
         return false;
     }
+    
     public boolean suaNhanVien(TaiKhoanObject tk) {
         try {
             String sql = "UPDATE taikhoan SET MatKhau='" + tk.getMatKhau() + "',"
@@ -260,5 +261,67 @@ public class ConnectDB {
         } catch (SQLException ex) {
         }
         return false;
+    }
+    
+    public ArrayList<SanPhamObject> dsSanPhamBanTrongNgay(){
+        ArrayList<SanPhamObject> dsSanPham = new ArrayList<SanPhamObject>();
+        try{
+            String sql="select sanpham.MaSanPham, " +
+                    "sanpham.TenSanPham, " +
+                    "sanpham.MaDanhMuc, " +
+                    "sanpham.DonViTinh, " +
+                    "sanpham.SoLuong as SoLuongCon, " +
+                    "sanpham.DonGia, " +
+                    "sanpham.KichCo, " +
+                    "sanpham.MoTa, " +
+                    "count(sanpham.MaSanPham) as SoLuongBan " +
+                    "from sanpham " +
+                    "inner join hoadon_sanpham on sanpham.MaSanPham = hoadon_sanpham.MaSanPham " +
+                    "group by MaSanPham; ";
+            st=conn.createStatement();
+            rs=st.executeQuery(sql);
+            while(rs.next()){
+                SanPhamObject sp = new SanPhamObject();
+                sp.setMaSanPham(rs.getInt("MaSanPham"));
+                sp.setTenSanPham(rs.getString("TenSanPham"));
+                sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
+                sp.setDonViTinh(rs.getString("DonViTinh"));
+                sp.setSoLuong(rs.getInt("SoLuongCon"));
+                sp.setDonGia(rs.getInt("DonGia"));
+                sp.setKichCo(rs.getString("KichCo"));
+                sp.setMoTa(rs.getString("MoTa"));
+                sp.setSoLuongBan(rs.getInt("SoLuongBan"));
+                dsSanPham.add(sp);
+            }
+            rs.close();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return dsSanPham;
+    }
+    
+        public ArrayList<HoaDonObject> dsHoaDonTrongNgay(){
+        ArrayList<HoaDonObject> dsHoaDon = new ArrayList<HoaDonObject>();
+        try{
+            String sql="SELECT * FROM hoadon WHERE ThoiGianXuat='2022-06-04'";
+            st=conn.createStatement();
+            rs=st.executeQuery(sql);
+            while(rs.next()){
+                HoaDonObject temp = new HoaDonObject();
+                temp.setMaHoaDon(rs.getInt("MaHoaDon"));
+                temp.setMaTaiKhoan(rs.getInt("MaTaiKhoan"));
+                temp.setTenKhachHang(rs.getString("TenKhachHang"));
+                temp.setSoDienThoai(rs.getString("SoDienThoai"));
+                temp.setThoiGianXuat(rs.getDate("ThoiGianXuat"));
+                temp.setTongTien(rs.getInt("TongTien"));
+                dsHoaDon.add(temp);
+            }
+            rs.close();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return dsHoaDon;
     }
 }

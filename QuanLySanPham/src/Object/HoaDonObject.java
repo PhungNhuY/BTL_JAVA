@@ -15,6 +15,15 @@ public class HoaDonObject {
     private String tenKhachHang;
     private String soDienThoai;
     private Date thoiGianXuat; 
+    private int tongTien;
+
+    public int getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(int tongTien) {
+        this.tongTien = tongTien;
+    }
     
     public int getMaHoaDon() {
         return maHoaDon;

@@ -8,6 +8,8 @@ import Menu.MenuAdminUI;
 import Menu.MenuNhanVienUI;
 import Object.TaiKhoanObject;
 import RunProject.ConnectDB;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,13 +26,13 @@ import java.util.logging.Logger;
  */
 public class DangNhapUI extends javax.swing.JFrame {
 
-    ConnectDB connect = new ConnectDB();
+    ConnectDB connect;
 
     /**
      * Creates new form DangNhapUI
-     * @throws java.sql.SQLException
      */
-    public DangNhapUI() throws SQLException {
+    public DangNhapUI() throws SQLException, ClassNotFoundException {
+        this.connect = new ConnectDB();
         initComponents();
         RadioButton_NhanVien.setActionCommand("nhanvien");
         RadioButton_QuanLy.setActionCommand("quanly");
@@ -51,13 +53,13 @@ public class DangNhapUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JTextField();
         tfUserName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         RadioButton_NhanVien = new javax.swing.JRadioButton();
         RadioButton_QuanLy = new javax.swing.JRadioButton();
+        PasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,12 +90,6 @@ public class DangNhapUI extends javax.swing.JFrame {
         jLabel2.setText("Tài khoản");
 
         jLabel3.setText("Quyền");
-
-        tfPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPasswordActionPerformed(evt);
-            }
-        });
 
         tfUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,13 +140,13 @@ public class DangNhapUI extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(RadioButton_NhanVien)
                                 .addGap(18, 18, 18)
-                                .addComponent(RadioButton_QuanLy))))
+                                .addComponent(RadioButton_QuanLy))
+                            .addComponent(PasswordField)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,8 +163,8 @@ public class DangNhapUI extends javax.swing.JFrame {
                     .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(PasswordField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,17 +200,13 @@ public class DangNhapUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPasswordActionPerformed
-
     private void tfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfUserNameActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         String taiKhoan = tfUserName.getText();
-        String matKhau = tfPassword.getText();
+        String matKhau = PasswordField.getText();
         String quyen = buttonGroup_quyen.getSelection().getActionCommand();
 
         //check tai khoan mat khau khong trong
@@ -230,27 +222,31 @@ public class DangNhapUI extends javax.swing.JFrame {
                     && tk.getMatKhau().equals(matKhau)
                     && tk.getQuyen().equals(quyen)) {
                 check = quyen;
+                try {
+                    FileWriter myWriter = new FileWriter("MaTaiKhoan.txt");
+                    myWriter.write(String.valueOf(tk.getMaTaiKhoan()));
+                    myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
                 break;
             }
         }
-        switch (check) {
-            case "nhanvien" -> {
-                MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
-                menuNhanVienUI.setVisible(true);
-                menuNhanVienUI.pack();
-                this.dispose();
-            }
-            case "quanly" -> {
-                MenuAdminUI menuAdminUI = new MenuAdminUI();
-                menuAdminUI.setVisible(true);
-                menuAdminUI.pack();
-                this.dispose();
-            }
-            default -> {
-                    JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác !");
-                    tfUserName.setText("");
-                    tfPassword.setText("");
-            }
+        if (check.equals("nhanvien")) {
+            MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
+            menuNhanVienUI.setVisible(true);
+            menuNhanVienUI.pack();
+            this.dispose();
+        } else if (check.equals("quanly")) {
+            MenuAdminUI menuAdminUI = new MenuAdminUI();
+            menuAdminUI.setVisible(true);
+            menuAdminUI.pack();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác !");
+            PasswordField.setText(null);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -288,18 +284,24 @@ public class DangNhapUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DangNhapUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new DangNhapUI().setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new DangNhapUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JRadioButton RadioButton_NhanVien;
     private javax.swing.JRadioButton RadioButton_QuanLy;
     private javax.swing.JButton btnDangNhap;
@@ -311,7 +313,6 @@ public class DangNhapUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField tfPassword;
     private javax.swing.JTextField tfUserName;
     // End of variables declaration//GEN-END:variables
 }

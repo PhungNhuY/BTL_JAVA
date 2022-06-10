@@ -17,6 +17,7 @@ public class SanPhamObject {
     private int donGia;
     private String kichCo;
     private String moTa;
+    private int SoLuongBan;
 
     public SanPhamObject(int maSanPham, String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa) {
         this.maSanPham = maSanPham;
@@ -106,5 +107,13 @@ public class SanPhamObject {
 
     public void getMaDanhMuc(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int getSoLuongBan() {
+        return SoLuongBan;
+    }
+
+    public void setSoLuongBan(int SoLuongBan) {
+        this.SoLuongBan = SoLuongBan;
     }
 }
