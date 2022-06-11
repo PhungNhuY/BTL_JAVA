@@ -14,7 +14,7 @@ public class HoaDonObject {
     private int maTaiKhoan;
     private String tenKhachHang;
     private String soDienThoai;
-    private Date thoiGianXuat; 
+    private String thoiGianXuat;
     private int tongTien;
 
     public int getTongTien() {
@@ -57,11 +57,11 @@ public class HoaDonObject {
         this.soDienThoai = soDienThoai;
     }
 
-    public Date getThoiGianXuat() {
+    public String getThoiGianXuat() {
         return thoiGianXuat;
     }
 
-    public void setThoiGianXuat(Date thoiGianXuat) {
+    public void setThoiGianXuat(String thoiGianXuat) {
         this.thoiGianXuat = thoiGianXuat;
     }
 }

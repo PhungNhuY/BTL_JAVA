@@ -9,6 +9,7 @@ package Object;
  * @author nhu y phung
  */
 public class SanPhamObject {
+
     private int maSanPham;
     private String tenSanPham;
     private int maDanhMuc;
@@ -39,7 +40,11 @@ public class SanPhamObject {
         this.kichCo = kichCo;
         this.moTa = moTa;
     }
-    public SanPhamObject(){};
+
+    public SanPhamObject() {
+    }
+
+    ;
     
     public int getMaSanPham() {
         return maSanPham;
@@ -108,7 +113,7 @@ public class SanPhamObject {
     public void getMaDanhMuc(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public int getSoLuongBan() {
         return SoLuongBan;
     }
@@ -116,4 +121,10 @@ public class SanPhamObject {
     public void setSoLuongBan(int SoLuongBan) {
         this.SoLuongBan = SoLuongBan;
     }
+
+    @Override
+    public String toString() {
+        return "SanPhamObject{" + "maSanPham=" + maSanPham + ", tenSanPham=" + tenSanPham + ", maDanhMuc=" + maDanhMuc + ", donViTinh=" + donViTinh + ", soLuong=" + soLuong + ", donGia=" + donGia + ", kichCo=" + kichCo + ", moTa=" + moTa + ", SoLuongBan=" + SoLuongBan + '}';
+    }
+
 }

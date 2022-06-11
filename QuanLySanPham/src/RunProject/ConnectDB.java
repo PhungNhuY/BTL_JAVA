@@ -128,7 +128,7 @@ public class ConnectDB {
                 temp.setMaTaiKhoan(rs.getInt("MaTaiKhoan"));
                 temp.setTenKhachHang(rs.getString("TenKhachHanh"));
                 temp.setSoDienThoai(rs.getString("SoDienThoai"));
-                temp.setThoiGianXuat(rs.getDate("ThoiGianXuat"));
+                temp.setThoiGianXuat(rs.getString("ThoiGianXuat"));
                 dsHoaDon.add(temp);
             }
             rs.close();
@@ -247,14 +247,14 @@ public class ConnectDB {
         }
         return false;
     }
-    
+
     public boolean suaNhanVien(TaiKhoanObject tk) {
         try {
             String sql = "UPDATE taikhoan SET MatKhau='" + tk.getMatKhau() + "',"
                     + "SoDienThoai='" + tk.getSoDienThoai() + "',"
-                    + "HoTen='" + tk.getHoTen()+ "',"
+                    + "HoTen='" + tk.getHoTen() + "',"
                     + "NgaySinh='" + tk.getNgaySinh() + "',"
-                    + "Quyen='" + tk.getQuyen() +  "' WHERE MaTaiKhoan='" + tk.getMaTaiKhoan()+ "'";
+                    + "Quyen='" + tk.getQuyen() + "' WHERE MaTaiKhoan='" + tk.getMaTaiKhoan() + "'";
             st = conn.createStatement();
             st.executeUpdate(sql);
             return true;
@@ -262,25 +262,25 @@ public class ConnectDB {
         }
         return false;
     }
-    
-    public ArrayList<SanPhamObject> dsSanPhamBanTrongNgay(){
+
+    public ArrayList<SanPhamObject> dsSanPhamBanTrongNgay() {
         ArrayList<SanPhamObject> dsSanPham = new ArrayList<SanPhamObject>();
-        try{
-            String sql="select sanpham.MaSanPham, " +
-                    "sanpham.TenSanPham, " +
-                    "sanpham.MaDanhMuc, " +
-                    "sanpham.DonViTinh, " +
-                    "sanpham.SoLuong as SoLuongCon, " +
-                    "sanpham.DonGia, " +
-                    "sanpham.KichCo, " +
-                    "sanpham.MoTa, " +
-                    "count(sanpham.MaSanPham) as SoLuongBan " +
-                    "from sanpham " +
-                    "inner join hoadon_sanpham on sanpham.MaSanPham = hoadon_sanpham.MaSanPham " +
-                    "group by MaSanPham; ";
-            st=conn.createStatement();
-            rs=st.executeQuery(sql);
-            while(rs.next()){
+        try {
+            String sql = "select sanpham.MaSanPham, "
+                    + "sanpham.TenSanPham, "
+                    + "sanpham.MaDanhMuc, "
+                    + "sanpham.DonViTinh, "
+                    + "sanpham.SoLuong as SoLuongCon, "
+                    + "sanpham.DonGia, "
+                    + "sanpham.KichCo, "
+                    + "sanpham.MoTa, "
+                    + "count(sanpham.MaSanPham) as SoLuongBan "
+                    + "from sanpham "
+                    + "inner join hoadon_sanpham on sanpham.MaSanPham = hoadon_sanpham.MaSanPham "
+                    + "group by MaSanPham; ";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
                 SanPhamObject sp = new SanPhamObject();
                 sp.setMaSanPham(rs.getInt("MaSanPham"));
                 sp.setTenSanPham(rs.getString("TenSanPham"));
@@ -294,34 +294,122 @@ public class ConnectDB {
                 dsSanPham.add(sp);
             }
             rs.close();
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return dsSanPham;
     }
-    
-        public ArrayList<HoaDonObject> dsHoaDonTrongNgay(){
+
+    public ArrayList<HoaDonObject> dsHoaDonTrongNgay() {
         ArrayList<HoaDonObject> dsHoaDon = new ArrayList<HoaDonObject>();
-        try{
-            String sql="SELECT * FROM hoadon WHERE ThoiGianXuat='2022-06-04'";
-            st=conn.createStatement();
-            rs=st.executeQuery(sql);
-            while(rs.next()){
+        try {
+            String sql = "SELECT * FROM hoadon WHERE ThoiGianXuat='2022-06-04'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
                 HoaDonObject temp = new HoaDonObject();
                 temp.setMaHoaDon(rs.getInt("MaHoaDon"));
                 temp.setMaTaiKhoan(rs.getInt("MaTaiKhoan"));
                 temp.setTenKhachHang(rs.getString("TenKhachHang"));
                 temp.setSoDienThoai(rs.getString("SoDienThoai"));
-                temp.setThoiGianXuat(rs.getDate("ThoiGianXuat"));
+                temp.setThoiGianXuat(rs.getString("ThoiGianXuat"));
                 temp.setTongTien(rs.getInt("TongTien"));
                 dsHoaDon.add(temp);
             }
             rs.close();
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return dsHoaDon;
+    }
+
+    public SanPhamObject getSanPhamById(int maSanPham) {
+        SanPhamObject sp = new SanPhamObject();
+        try {
+            String sql = "SELECT * FROM sanpham WHERE MaSanPham = " + maSanPham;
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                sp.setMaSanPham(rs.getInt("MaSanPham"));
+                sp.setTenSanPham(rs.getString("TenSanPham"));
+                sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
+                sp.setDonViTinh(rs.getString("DonViTinh"));
+                sp.setSoLuong(rs.getInt("SoLuong"));
+                sp.setDonGia(rs.getInt("DonGia"));
+                sp.setKichCo(rs.getString("KichCo"));
+                sp.setMoTa(rs.getString("MoTa"));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+        }
+        return sp;
+    }
+    
+    public int themHoaDon(HoaDonObject temp){
+        try {
+            //them hoa don
+            String sql = "INSERT INTO hoadon(MaTaiKhoan, TenKhachHang, SoDienThoai, ThoiGianXuat, TongTien) "
+                    + "VALUES(" + temp.getMaTaiKhoan()+ ","
+                    + "'" + temp.getTenKhachHang()+ "',"
+                    + "'" + temp.getSoDienThoai()+ "',"
+                    + "'" + temp.getThoiGianXuat()+ "',"
+                    + "" + temp.getTongTien()+ ")";
+            System.out.println(sql);
+            st = conn.createStatement();
+            st.executeUpdate(sql);
+            
+            sql = "SELECT MAX(MaHoaDon) FROM hoadon";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            int mahoadon=0;
+            while (rs.next()) {
+                mahoadon = rs.getInt("max(MaHoaDon)");
+            }
+            rs.close();
+            return mahoadon;
+        } catch (SQLException ex) {
+        }
+        return 0;
+    }
+    
+    public boolean themHoaDon_sanPham(int mahoadon, int masanpham, int soluong){
+        
+        try {
+            String sql = "INSERT INTO hoadon_sanpham(MaHoaDon, MaSanPham, SoLuong) "
+                    + "VALUES(" + String.valueOf(mahoadon)+ ","
+                    + "" + String.valueOf(masanpham) + ","
+                    + "" + String.valueOf(soluong) + ")";
+            st = conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        return false;
+    }
+    
+    public boolean giamSoLuong(int masanpham, int soluong){
+        int soluonghienco = 0;
+        try {
+            String sql = "SELECT * FROM sanpham WHERE MaSanPham = " + masanpham;
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                soluonghienco = rs.getInt("SoLuong");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+        }
+        
+        //sua
+        try {
+            String sql = "UPDATE sanpham SET SoLuong=" +String.valueOf(soluonghienco-soluong) +" WHERE MaSanPham=" + masanpham;
+            st = conn.createStatement();
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
+        }
+        return false;
     }
 }
