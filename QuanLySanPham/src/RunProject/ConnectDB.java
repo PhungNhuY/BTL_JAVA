@@ -14,7 +14,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -301,9 +304,12 @@ public class ConnectDB {
     }
 
     public ArrayList<HoaDonObject> dsHoaDonTrongNgay() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String ngayHienTai = dateFormat.format(date);
         ArrayList<HoaDonObject> dsHoaDon = new ArrayList<HoaDonObject>();
         try {
-            String sql = "SELECT * FROM hoadon WHERE ThoiGianXuat='2022-06-04'";
+            String sql = "SELECT * FROM hoadon WHERE ThoiGianXuat BETWEEN '"+ngayHienTai+" 00:00:00' AND '"+ngayHienTai+" 23:59:59'";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -354,7 +360,6 @@ public class ConnectDB {
                     + "'" + temp.getSoDienThoai()+ "',"
                     + "'" + temp.getThoiGianXuat()+ "',"
                     + "" + temp.getTongTien()+ ")";
-            System.out.println(sql);
             st = conn.createStatement();
             st.executeUpdate(sql);
             
