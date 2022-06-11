@@ -34,6 +34,7 @@ public class DangNhapUI extends javax.swing.JFrame {
     public DangNhapUI() throws SQLException, ClassNotFoundException {
         this.connect = new ConnectDB();
         initComponents();
+        setLocationRelativeTo(null);
         RadioButton_NhanVien.setActionCommand("nhanvien");
         RadioButton_QuanLy.setActionCommand("quanly");
     }

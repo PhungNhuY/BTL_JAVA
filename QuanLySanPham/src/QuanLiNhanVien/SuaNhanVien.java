@@ -6,6 +6,8 @@ package QuanLiNhanVien;
 
 import Object.TaiKhoanObject;
 import RunProject.ConnectDB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +23,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
     ConnectDB connect=new ConnectDB();
     public SuaNhanVien() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     public SuaNhanVien(int MaNV,String hoTen,String tenDangNhap,String matkhau , String SoDienThoai, String ngaySinh, String quyen) {
         initComponents();
@@ -61,6 +64,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
         txtTenDangNhap = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnSua = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,13 +95,25 @@ public class SuaNhanVien extends javax.swing.JFrame {
             }
         });
 
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(btnSua)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(btnSua))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(btnQuayLai)))
                 .addContainerGap(279, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -140,7 +156,9 @@ public class SuaNhanVien extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(btnQuayLai)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addComponent(btnSua)
                 .addGap(27, 27, 27))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,6 +224,18 @@ public class SuaNhanVien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        try {
+            // TODO add your handling code here:
+            QuanLyNhanVienUI menu = new QuanLyNhanVienUI();
+            menu.pack();
+            menu.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +272,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSua;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

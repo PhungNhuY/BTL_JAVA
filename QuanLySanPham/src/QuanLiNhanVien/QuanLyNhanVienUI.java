@@ -4,13 +4,10 @@
  */
 package QuanLiNhanVien;
 
+import Menu.MenuAdminUI;
 import Object.TaiKhoanObject;
 import RunProject.ConnectDB;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,7 +25,9 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
 
     public QuanLyNhanVienUI() throws ClassNotFoundException {
         initComponents();
+        setLocationRelativeTo(null);
         showTable();
+        
     }
 
     public void showTable() {
@@ -70,7 +69,7 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblTaiKhoan = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtMatKhau = new javax.swing.JPasswordField();
 
@@ -131,8 +130,8 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
 
         jLabel7.setText("QUẢN LÝ NHÂN VIÊN");
 
-        jButton1.setText("Quay lại");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQUayLai(evt);
             }
@@ -173,7 +172,7 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jButton1))
+                            .addComponent(btnQuayLai))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +208,7 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnQuayLai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,7 +310,10 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnQUayLai(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQUayLai
-        //MenuAdminUI menu = new MenuadminUI();
+        MenuAdminUI menu = new MenuAdminUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQUayLai
 
@@ -356,9 +358,9 @@ public class QuanLyNhanVienUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;

@@ -4,6 +4,7 @@
  */
 package QuanLiSanPham;
 
+import Menu.MenuAdminUI;
 import Object.DanhMucObject;
 import Object.SanPhamObject;
 import RunProject.ConnectDB;
@@ -27,6 +28,7 @@ public class SuaSanPham extends javax.swing.JFrame {
     int maSP;
     public SuaSanPham() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
     
@@ -71,6 +73,7 @@ public class SuaSanPham extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnSua = new javax.swing.JButton();
         btnQuayLai = new javax.swing.JButton();
+        btnQuayLai3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,15 +110,27 @@ public class SuaSanPham extends javax.swing.JFrame {
 
         btnQuayLai.setText("Quay lại");
 
+        btnQuayLai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLai3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(btnSua)
-                .addGap(91, 91, 91)
-                .addComponent(btnQuayLai)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(btnSua)
+                        .addGap(91, 91, 91)
+                        .addComponent(btnQuayLai))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnQuayLai3)))
                 .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -158,7 +173,9 @@ public class SuaSanPham extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(263, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(btnQuayLai3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSua)
                     .addComponent(btnQuayLai))
@@ -263,6 +280,14 @@ public class SuaSanPham extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void btnQuayLai3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai3ActionPerformed
+        // TODO add your handling code here:
+        QuanLySanPhamUI menu = new QuanLySanPhamUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnQuayLai3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +325,8 @@ public class SuaSanPham extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnQuayLai2;
+    private javax.swing.JButton btnQuayLai3;
     private javax.swing.JButton btnSua;
     private javax.swing.JComboBox<String> cbDanhMuc;
     private javax.swing.JLabel jLabel2;

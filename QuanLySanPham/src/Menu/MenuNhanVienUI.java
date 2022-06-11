@@ -15,6 +15,7 @@ public class MenuNhanVienUI extends javax.swing.JFrame {
      */
     public MenuNhanVienUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

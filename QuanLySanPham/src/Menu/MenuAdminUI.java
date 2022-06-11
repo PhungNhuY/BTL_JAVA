@@ -3,16 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Menu;
+
 import QuanLiDanhMuc.QuanLyDanhMucUI;
 import QuanLiNhanVien.QuanLyNhanVienUI;
 import QuanLiSanPham.QuanLySanPhamUI;
+import ThongKe.ThongKeUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author MD-03092021
- * Check point
+ * @author MD-03092021 Check point
  */
 public class MenuAdminUI extends javax.swing.JFrame {
 
@@ -21,6 +22,7 @@ public class MenuAdminUI extends javax.swing.JFrame {
      */
     public MenuAdminUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -49,6 +51,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         jLabel1.setText("MỜI BẠN CHỌN CHỨC NĂNG");
 
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/logout.png"))); // NOI18N
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,6 +100,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         btnThongKe.setBackground(new java.awt.Color(188, 210, 112));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         btnQLDM.setBackground(new java.awt.Color(188, 210, 112));
         btnQLDM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -153,16 +165,16 @@ public class MenuAdminUI extends javax.swing.JFrame {
 
     private void btnQLSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSPActionPerformed
         // TODO add your handling code here:
-        QuanLySanPhamUI QLSP=new QuanLySanPhamUI();
+        QuanLySanPhamUI QLSP = new QuanLySanPhamUI();
         QLSP.setVisible(true);
         QLSP.pack();
         this.dispose();
-                
+
     }//GEN-LAST:event_btnQLSPActionPerformed
 
     private void btnQLDMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLDMActionPerformed
         // TODO add your handling code here:
-        QuanLyDanhMucUI QLDM=new QuanLyDanhMucUI();
+        QuanLyDanhMucUI QLDM = new QuanLyDanhMucUI();
         QLDM.setVisible(true);
         QLDM.pack();
         this.dispose();
@@ -171,7 +183,7 @@ public class MenuAdminUI extends javax.swing.JFrame {
     private void btnQLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNVActionPerformed
         try {
             // TODO add your handling code here:
-            QuanLyNhanVienUI QLNV=new QuanLyNhanVienUI();
+            QuanLyNhanVienUI QLNV = new QuanLyNhanVienUI();
             QLNV.setVisible(true);
             QLNV.pack();
             this.dispose();
@@ -179,6 +191,23 @@ public class MenuAdminUI extends javax.swing.JFrame {
             Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnQLNVActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        try {
+            // TODO add your handling code here:
+            ThongKeUI ThongKe=new ThongKeUI();
+            ThongKe.setVisible(true);
+            ThongKe.pack();
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**
      * @param args the command line arguments

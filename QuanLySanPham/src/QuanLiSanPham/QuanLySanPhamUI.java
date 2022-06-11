@@ -4,6 +4,7 @@
  */
 package QuanLiSanPham;
 
+import Menu.MenuAdminUI;
 import Object.DanhMucObject;
 import Object.SanPhamObject;
 import RunProject.ConnectDB;
@@ -33,7 +34,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
 
     public  QuanLySanPhamUI() {
         initComponents();
-
+        setLocationRelativeTo(null);
         loadTable();
 
         final DefaultComboBoxModel DMModel = (DefaultComboBoxModel) cbDanhMuc.getModel();
@@ -96,6 +97,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         tfKichCo1 = new javax.swing.JTextField();
         btnTaoMoi = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -169,6 +171,13 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
             }
         });
 
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,11 +187,13 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnQuayLai)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -229,7 +240,9 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
+                .addComponent(btnQuayLai)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,7 +281,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
                     .addComponent(btnTaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -401,6 +414,14 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
     private void cbDanhMucItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDanhMucItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDanhMucItemStateChanged
+
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        // TODO add your handling code here:
+        MenuAdminUI menu = new MenuAdminUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
     private void loadTable() {
 
         DefaultTableModel tableModel = (DefaultTableModel) tbSanPham.getModel();
@@ -452,6 +473,7 @@ public class QuanLySanPhamUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTaoMoi;
     private javax.swing.JButton btnThem;

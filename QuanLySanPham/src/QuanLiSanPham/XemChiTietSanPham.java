@@ -18,6 +18,7 @@ public class XemChiTietSanPham extends javax.swing.JFrame {
      */
     public XemChiTietSanPham() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa, ArrayList<DanhMucObject> list) {
         initComponents();
@@ -61,6 +62,7 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
         jScrollPane7 = new javax.swing.JScrollPane();
         tpSoLuong = new javax.swing.JTextPane();
         btnQuayLai = new javax.swing.JButton();
+        btnQuayLai3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +116,13 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
             }
         });
 
+        btnQuayLai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLai3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,11 +130,13 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,6 +147,10 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
                 .addGap(236, 236, 236)
                 .addComponent(btnQuayLai)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(btnQuayLai3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -159,7 +174,9 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(15, 15, 15)
+                .addComponent(btnQuayLai3)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -211,6 +228,14 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
         this.dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
+    private void btnQuayLai3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai3ActionPerformed
+        // TODO add your handling code here:
+        QuanLySanPhamUI menu = new QuanLySanPhamUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnQuayLai3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,6 +273,7 @@ public XemChiTietSanPham(String tenSanPham, int maDanhMuc, String donViTinh, int
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnQuayLai3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

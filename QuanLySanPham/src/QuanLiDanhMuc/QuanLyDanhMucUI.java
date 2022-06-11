@@ -4,6 +4,7 @@
  */
 package QuanLiDanhMuc;
 
+import Menu.MenuAdminUI;
 import Object.DanhMucObject;
 import RunProject.ConnectDB;
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
     /**
      * Creates new form ThemDanhMucUI
      */
-     ConnectDB connectDB = new ConnectDB();
+    ConnectDB connectDB = new ConnectDB();
+
     public QuanLyDanhMucUI() {
         initComponents();
-         ArrayList<DanhMucObject> danhmucSP = connectDB.dsDanhMuc();
+        setLocationRelativeTo(null);
+        ArrayList<DanhMucObject> danhmucSP = connectDB.dsDanhMuc();
         DefaultTableModel tableModel = (DefaultTableModel) tbDanhMuc.getModel();
         for (DanhMucObject dm : danhmucSP) {
             Object[] obj = {dm.getMaDanhMuc(), dm.getTenDanhMuc(), dm.getMoTa()};
@@ -48,6 +51,7 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfMoTa = new javax.swing.JTextArea();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +87,13 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
         tfMoTa.setRows(5);
         jScrollPane1.setViewportView(tfMoTa);
 
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,11 +122,17 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(btnQuayLai)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(btnQuayLai)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,43 +160,51 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-         String tenDanhMuc=tfTenDanhMuc.getText();
-        String moTa=tfMoTa.getText();
+        String tenDanhMuc = tfTenDanhMuc.getText();
+        String moTa = tfMoTa.getText();
         if (tenDanhMuc.isEmpty() || moTa.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Không được để trống");
             return;
         }
         try {
 
-            DanhMucObject x = new DanhMucObject(tenDanhMuc,moTa);
+            DanhMucObject x = new DanhMucObject(tenDanhMuc, moTa);
             if (connectDB.themDanhMuc(x)) {
                 JOptionPane.showMessageDialog(null, "Thêm danh mục thành công !");
                 loadBang();
             } else {
                 JOptionPane.showMessageDialog(null, "Thêm danh mục thất bại !");
-                
+
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, "Yêu cầu nhập số và không để trống");
-            
+
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        int row =tbDanhMuc.getSelectedRow();
-        if(row==-1){
+        int row = tbDanhMuc.getSelectedRow();
+        if (row == -1) {
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn danh mục nào để sửa !");
-             return;   
+            return;
         }
-        int maDanhMuc= (int) tbDanhMuc.getModel().getValueAt(row, 0);
-        String tenDanhMuc=(String) tbDanhMuc.getModel().getValueAt(row, 1);
-        String moTa=(String) tbDanhMuc.getModel().getValueAt(row, 2);
-        SuaDanhMucUI x=new SuaDanhMucUI(maDanhMuc,tenDanhMuc,moTa);
+        int maDanhMuc = (int) tbDanhMuc.getModel().getValueAt(row, 0);
+        String tenDanhMuc = (String) tbDanhMuc.getModel().getValueAt(row, 1);
+        String moTa = (String) tbDanhMuc.getModel().getValueAt(row, 2);
+        SuaDanhMucUI x = new SuaDanhMucUI(maDanhMuc, tenDanhMuc, moTa);
         x.setVisible(true);
         x.pack();
-        
+
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        // TODO add your handling code here:
+        MenuAdminUI menu = new MenuAdminUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,13 +241,14 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
             }
         });
     }
+
     private void loadBang() {
         //ArrayList<DanhMucObject> dm = connectDB.dsDanhMuc();
         DefaultTableModel tableModel = (DefaultTableModel) tbDanhMuc.getModel();
         for (int i = tbDanhMuc.getRowCount() - 1; i >= 0; i--) {
             tableModel.removeRow(i);
         }
-        for(DanhMucObject danhmuc : connectDB.dsDanhMuc()) {
+        for (DanhMucObject danhmuc : connectDB.dsDanhMuc()) {
             Object[] obj = {danhmuc.getMaDanhMuc(), danhmuc.getTenDanhMuc(), danhmuc.getMoTa()};
             tableModel.addRow(obj);
         }
@@ -230,6 +256,7 @@ public class QuanLyDanhMucUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel2;
