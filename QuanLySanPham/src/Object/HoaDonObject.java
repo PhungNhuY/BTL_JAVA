@@ -14,15 +14,15 @@ public class HoaDonObject {
     private int maTaiKhoan;
     private String tenKhachHang;
     private String soDienThoai;
-    private Date thoiGianXuat; 
-    private int TongTien;
+    private String thoiGianXuat;
+    private int tongTien;
 
     public int getTongTien() {
-        return TongTien;
+        return tongTien;
     }
 
-    public void setTongTien(int TongTien) {
-        this.TongTien = TongTien;
+    public void setTongTien(int tongTien) {
+        this.tongTien = tongTien;
     }
     
     public int getMaHoaDon() {
@@ -57,11 +57,11 @@ public class HoaDonObject {
         this.soDienThoai = soDienThoai;
     }
 
-    public Date getThoiGianXuat() {
+    public String getThoiGianXuat() {
         return thoiGianXuat;
     }
 
-    public void setThoiGianXuat(Date thoiGianXuat) {
+    public void setThoiGianXuat(String thoiGianXuat) {
         this.thoiGianXuat = thoiGianXuat;
     }
 }

@@ -25,6 +25,7 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
      */
     public ThongKeSanPhamUI() throws ClassNotFoundException, SQLException {
         initComponents();
+        setLocationRelativeTo(null);
         ConnectDB connectDB = new ConnectDB();
         ArrayList<SanPhamObject> list = connectDB.dsSanPhamBanTrongNgay();
         DefaultTableModel tbmodel = (DefaultTableModel) jTable1.getModel();
@@ -85,6 +86,7 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
         tfKichCo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfMoTa = new javax.swing.JTextArea();
+        btnQuayLai3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,12 +131,19 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
         tfMoTa.setRows(5);
         jScrollPane1.setViewportView(tfMoTa);
 
+        btnQuayLai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
+        btnQuayLai3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuayLai3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(69, 380, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(221, 221, 221))
             .addGroup(layout.createSequentialGroup()
@@ -163,7 +172,9 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfTenSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnQuayLai3)
+                                    .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tfMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(105, 105, 105)
@@ -186,8 +197,10 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnQuayLai3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8)
@@ -216,13 +229,25 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(tfMaDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnQuayLai3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            ThongKeUI menu = new ThongKeUI();
+            menu.pack();
+            menu.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ThongKeHoaDonUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnQuayLai3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +275,7 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ThongKeSanPhamUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -266,6 +292,7 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuayLai3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

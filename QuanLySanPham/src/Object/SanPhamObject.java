@@ -9,6 +9,7 @@ package Object;
  * @author nhu y phung
  */
 public class SanPhamObject {
+
     private int maSanPham;
     private String tenSanPham;
     private int maDanhMuc;
@@ -17,16 +18,34 @@ public class SanPhamObject {
     private int donGia;
     private String kichCo;
     private String moTa;
-    private int soLuongBan;
+    private int SoLuongBan;
 
-    public int getSoLuongBan() {
-        return soLuongBan;
+    public SanPhamObject(int maSanPham, String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa) {
+        this.maSanPham = maSanPham;
+        this.tenSanPham = tenSanPham;
+        this.maDanhMuc = maDanhMuc;
+        this.donViTinh = donViTinh;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.kichCo = kichCo;
+        this.moTa = moTa;
     }
 
-    public void setSoLuongBan(int soLuongBan) {
-        this.soLuongBan = soLuongBan;
+    public SanPhamObject(String tenSanPham, int maDanhMuc, String donViTinh, int soLuong, int donGia, String kichCo, String moTa) {
+        this.tenSanPham = tenSanPham;
+        this.maDanhMuc = maDanhMuc;
+        this.donViTinh = donViTinh;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.kichCo = kichCo;
+        this.moTa = moTa;
     }
 
+    public SanPhamObject() {
+    }
+
+    ;
+    
     public int getMaSanPham() {
         return maSanPham;
     }
@@ -94,4 +113,18 @@ public class SanPhamObject {
     public void getMaDanhMuc(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public int getSoLuongBan() {
+        return SoLuongBan;
+    }
+
+    public void setSoLuongBan(int SoLuongBan) {
+        this.SoLuongBan = SoLuongBan;
+    }
+
+    @Override
+    public String toString() {
+        return "SanPhamObject{" + "maSanPham=" + maSanPham + ", tenSanPham=" + tenSanPham + ", maDanhMuc=" + maDanhMuc + ", donViTinh=" + donViTinh + ", soLuong=" + soLuong + ", donGia=" + donGia + ", kichCo=" + kichCo + ", moTa=" + moTa + ", SoLuongBan=" + SoLuongBan + '}';
+    }
+
 }

@@ -4,10 +4,16 @@
  */
 package Menu;
 
+import QuanLiDanhMuc.QuanLyDanhMucUI;
+import QuanLiNhanVien.QuanLyNhanVienUI;
+import QuanLiSanPham.QuanLySanPhamUI;
+import ThongKe.ThongKeUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author MD-03092021
- * Check point
+ * @author MD-03092021 Check point
  */
 public class MenuAdminUI extends javax.swing.JFrame {
 
@@ -16,6 +22,7 @@ public class MenuAdminUI extends javax.swing.JFrame {
      */
     public MenuAdminUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,6 +51,11 @@ public class MenuAdminUI extends javax.swing.JFrame {
         jLabel1.setText("MỜI BẠN CHỌN CHỨC NĂNG");
 
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/logout.png"))); // NOI18N
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,18 +82,38 @@ public class MenuAdminUI extends javax.swing.JFrame {
         btnQLNV.setBackground(new java.awt.Color(188, 210, 112));
         btnQLNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLNV.setText("QUẢN LÍ NHÂN VIÊN");
+        btnQLNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLNVActionPerformed(evt);
+            }
+        });
 
         btnQLSP.setBackground(new java.awt.Color(188, 210, 112));
         btnQLSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLSP.setText("QUẢN LÍ SẢN PHẨM");
+        btnQLSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLSPActionPerformed(evt);
+            }
+        });
 
         btnThongKe.setBackground(new java.awt.Color(188, 210, 112));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         btnQLDM.setBackground(new java.awt.Color(188, 210, 112));
         btnQLDM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQLDM.setText("QUẢN LÍ DANH MỤC");
+        btnQLDM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLDMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,10 +138,10 @@ public class MenuAdminUI extends javax.swing.JFrame {
                     .addComponent(btnQLDM, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnQLSP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnQLNV, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(btnQLNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,6 +162,52 @@ public class MenuAdminUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnQLSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSPActionPerformed
+        // TODO add your handling code here:
+        QuanLySanPhamUI QLSP = new QuanLySanPhamUI();
+        QLSP.setVisible(true);
+        QLSP.pack();
+        this.dispose();
+
+    }//GEN-LAST:event_btnQLSPActionPerformed
+
+    private void btnQLDMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLDMActionPerformed
+        // TODO add your handling code here:
+        QuanLyDanhMucUI QLDM = new QuanLyDanhMucUI();
+        QLDM.setVisible(true);
+        QLDM.pack();
+        this.dispose();
+    }//GEN-LAST:event_btnQLDMActionPerformed
+
+    private void btnQLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNVActionPerformed
+        try {
+            // TODO add your handling code here:
+            QuanLyNhanVienUI QLNV = new QuanLyNhanVienUI();
+            QLNV.setVisible(true);
+            QLNV.pack();
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnQLNVActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        try {
+            // TODO add your handling code here:
+            ThongKeUI ThongKe=new ThongKeUI();
+            ThongKe.setVisible(true);
+            ThongKe.pack();
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**
      * @param args the command line arguments

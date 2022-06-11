@@ -84,6 +84,9 @@
               <Image iconType="3" name="/Anh/logout.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangXuatActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -121,11 +124,11 @@
                       <Component id="btnQLSP" min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnQLNV" min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="btnThongKe" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnThongKe" pref="67" max="32767" attributes="0"/>
+                      <Component id="btnQLNV" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="127" max="32767" attributes="0"/>
+                  <EmptySpace pref="134" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,6 +144,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xcd; NH&#xc2;N VI&#xca;N"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLNVActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnQLSP">
           <Properties>
@@ -152,6 +158,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xcd; S&#x1ea2;N PH&#x1ea8;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLSPActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnThongKe">
           <Properties>
@@ -163,6 +172,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThongKeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnQLDM">
           <Properties>
@@ -174,6 +186,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xcd; DANH M&#x1ee4;C"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLDMActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
