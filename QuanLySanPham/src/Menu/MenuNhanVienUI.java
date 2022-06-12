@@ -4,6 +4,11 @@
  */
 package Menu;
 
+import ThanhToan.ThanhToanUI;
+import ThongKe.ThongKeUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MD-03092021
@@ -87,6 +92,11 @@ public class MenuNhanVienUI extends javax.swing.JFrame {
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/thongkeicon.png"))); // NOI18N
         btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,11 +144,27 @@ public class MenuNhanVienUI extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
+        ThanhToanUI hoaDonUI = new ThanhToanUI();
+        hoaDonUI.setVisible(true);
+        hoaDonUI.pack();
+        this.dispose();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        try {
+            // TODO add your handling code here:
+            ThongKeUI thongKeUI = new ThongKeUI();
+            thongKeUI.setVisible(true);
+            thongKeUI.pack();
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
     /**
      * @param args the command line arguments

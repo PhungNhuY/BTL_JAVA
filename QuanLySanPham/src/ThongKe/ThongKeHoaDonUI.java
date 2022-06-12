@@ -78,12 +78,12 @@ public class ThongKeHoaDonUI extends javax.swing.JFrame {
         tfMaTaiKhoan = new java.awt.TextField();
         tfTongTien = new java.awt.TextField();
         jLabel2 = new javax.swing.JLabel();
-        Label_DoanhThu = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Label_SoLuongHoaDon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnQuayLai1 = new javax.swing.JButton();
+        Label_DoanhThu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -220,9 +220,9 @@ public class ThongKeHoaDonUI extends javax.swing.JFrame {
                                 .addComponent(Label_SoLuongHoaDon))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_DoanhThu)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)
+                                .addComponent(Label_DoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(138, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
@@ -261,8 +261,9 @@ public class ThongKeHoaDonUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(Label_DoanhThu))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(Label_DoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)))))
@@ -279,9 +280,14 @@ public class ThongKeHoaDonUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        this.dispose();
+        try {
+            ThongKeUI thongKeUI = new ThongKeUI();
+            thongKeUI.pack();
+            thongKeUI.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ThongKeHoaDonUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnQuayLai1ActionPerformed
 
     private void tfMaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMaHoaDonActionPerformed

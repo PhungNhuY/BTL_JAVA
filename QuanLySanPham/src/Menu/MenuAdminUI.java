@@ -4,10 +4,12 @@
  */
 package Menu;
 
+import DangNhap.DangNhapUI;
 import QuanLiDanhMuc.QuanLyDanhMucUI;
 import QuanLiNhanVien.QuanLyNhanVienUI;
 import QuanLiSanPham.QuanLySanPhamUI;
 import ThongKe.ThongKeUI;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -198,7 +200,16 @@ public class MenuAdminUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLNVActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
+        try {
+            DangNhapUI dangNhapUI = new DangNhapUI();
+            dangNhapUI.setVisible(true);
+            dangNhapUI.pack();
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed

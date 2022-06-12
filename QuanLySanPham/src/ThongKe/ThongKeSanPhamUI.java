@@ -255,9 +255,14 @@ public class ThongKeSanPhamUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        this.dispose();
+        try {
+            ThongKeUI thongKeUI = new ThongKeUI();
+            thongKeUI.pack();
+            thongKeUI.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ThongKeHoaDonUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnQuayLai1ActionPerformed
 
     /**

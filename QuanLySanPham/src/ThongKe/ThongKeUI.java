@@ -44,7 +44,6 @@ public class ThongKeUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnDangXuat = new javax.swing.JButton();
         btnQuayLai1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -74,13 +73,6 @@ public class ThongKeUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("THỐNG KÊ ");
 
-        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/logout.png"))); // NOI18N
-        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangXuatActionPerformed(evt);
-            }
-        });
-
         btnQuayLai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
         btnQuayLai1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,20 +87,16 @@ public class ThongKeUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(btnQuayLai1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(119, 119, 119)
-                .addComponent(btnDangXuat)
-                .addGap(115, 115, 115))
+                .addGap(272, 272, 272))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(8, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDangXuat)
-                    .addComponent(jLabel2))
-                .addContainerGap())
+                .addComponent(jLabel2)
+                .addGap(15, 15, 15))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnQuayLai1))
@@ -184,10 +172,6 @@ public class ThongKeUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnQuayLai1ActionPerformed
 
-    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDangXuatActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -231,7 +215,6 @@ public class ThongKeUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnQuayLai1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

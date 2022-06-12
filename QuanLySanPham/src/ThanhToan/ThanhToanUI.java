@@ -4,6 +4,7 @@
  */
 package ThanhToan;
 
+import Menu.MenuNhanVienUI;
 import Object.DanhMucObject;
 import Object.SanPhamObject;
 import RunProject.ConnectDB;
@@ -17,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MD-03092021
  */
-public class HoaDonUI extends javax.swing.JFrame {
+public class ThanhToanUI extends javax.swing.JFrame {
 
     ArrayList<DanhMucObject> danhMucs;
     ConnectDB connectDB = new ConnectDB();
     ArrayList<SanPhamObject> products = new ArrayList();
     int totalMoney = 0;
 
-    public HoaDonUI() throws SQLException, ClassNotFoundException {
+    public ThanhToanUI() {
         initComponents();
         setLocationRelativeTo(null);
         /**
@@ -60,7 +61,6 @@ public class HoaDonUI extends javax.swing.JFrame {
         btnThanhToan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        btnDangXuat = new javax.swing.JButton();
         btnQuayLai1 = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
 
@@ -222,14 +222,7 @@ public class HoaDonUI extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setText("HÓA ĐƠN");
-
-        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/logout.png"))); // NOI18N
-        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangXuatActionPerformed(evt);
-            }
-        });
+        jLabel4.setText("THANH TOÁN");
 
         btnQuayLai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Anh/back.png"))); // NOI18N
         btnQuayLai1.addActionListener(new java.awt.event.ActionListener() {
@@ -247,22 +240,14 @@ public class HoaDonUI extends javax.swing.JFrame {
                 .addComponent(btnQuayLai1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(btnDangXuat)
-                .addGap(26, 26, 26))
+                .addGap(184, 184, 184))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnQuayLai1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnDangXuat)))
-                .addContainerGap())
+                .addComponent(btnQuayLai1)
+                .addContainerGap(20, Short.MAX_VALUE))
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
         );
 
@@ -355,10 +340,10 @@ public class HoaDonUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String error = "";
 
-        if (tfSL.getText().isEmpty()) {
+        if (tfMaSP.getText().isEmpty()) {
             error += "Khong duoc de trong ma san pham";   
         }
-        if (tfMaSP.getText().isEmpty()) {
+        if (tfSL.getText().isEmpty()) {
             error+= "\n Khong duoc de trong so luong";
         }
         if(!error.equals("")){
@@ -389,7 +374,10 @@ public class HoaDonUI extends javax.swing.JFrame {
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
         // TODO add your handling code here:
-
+        MenuNhanVienUI menu = new MenuNhanVienUI();
+        menu.pack();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnQuayLai1ActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -416,10 +404,6 @@ public class HoaDonUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
-    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDangXuatActionPerformed
-
     private void tfMaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMaSPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfMaSPActionPerformed
@@ -445,28 +429,24 @@ public class HoaDonUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HoaDonUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HoaDonUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HoaDonUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HoaDonUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThanhToanUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new HoaDonUI().setVisible(true);
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(HoaDonUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            new ThanhToanUI().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnQuayLai1;
     private javax.swing.JButton btnThanhToan;

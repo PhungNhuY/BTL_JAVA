@@ -14,7 +14,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -264,9 +267,12 @@ public class ConnectDB {
     }
 
     public ArrayList<SanPhamObject> dsSanPhamBanTrongNgay() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String ngayHienTai = dateFormat.format(date);
         ArrayList<SanPhamObject> dsSanPham = new ArrayList<SanPhamObject>();
         try {
-            String sql = "select sanpham.MaSanPham, "
+            String sql = "SELECT sanpham.MaSanPham, "
                     + "sanpham.TenSanPham, "
                     + "sanpham.MaDanhMuc, "
                     + "sanpham.DonViTinh, "
@@ -274,9 +280,11 @@ public class ConnectDB {
                     + "sanpham.DonGia, "
                     + "sanpham.KichCo, "
                     + "sanpham.MoTa, "
-                    + "count(sanpham.MaSanPham) as SoLuongBan "
-                    + "from sanpham "
+                    + "count(sanpham.MaSanPham) AS SoLuongBan "
+                    + "FROM sanpham "
                     + "inner join hoadon_sanpham on sanpham.MaSanPham = hoadon_sanpham.MaSanPham "
+                    + "inner join hoadon on hoadon_sanpham.MaHoaDon = hoadon.MaHoaDon "
+                    + "WHERE ThoiGianXuat BETWEEN '"+ngayHienTai+" 00:00:00' AND '"+ngayHienTai+" 23:59:59' "
                     + "group by MaSanPham; ";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
@@ -301,9 +309,12 @@ public class ConnectDB {
     }
 
     public ArrayList<HoaDonObject> dsHoaDonTrongNgay() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String ngayHienTai = dateFormat.format(date);
         ArrayList<HoaDonObject> dsHoaDon = new ArrayList<HoaDonObject>();
         try {
-            String sql = "SELECT * FROM hoadon WHERE ThoiGianXuat='2022-06-04'";
+            String sql = "SELECT * FROM hoadon WHERE ThoiGianXuat BETWEEN '"+ngayHienTai+" 00:00:00' AND '"+ngayHienTai+" 23:59:59'";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
