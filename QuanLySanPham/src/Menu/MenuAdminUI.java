@@ -218,7 +218,7 @@ public class MenuAdminUI extends javax.swing.JFrame {
             ThongKeUI ThongKe=new ThongKeUI();
             ThongKe.setVisible(true);
             ThongKe.pack();
-            this.dispose();
+//            this.dispose();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MenuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
         }

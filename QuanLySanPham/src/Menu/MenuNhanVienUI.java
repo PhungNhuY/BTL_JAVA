@@ -160,7 +160,7 @@ public class MenuNhanVienUI extends javax.swing.JFrame {
             ThongKeUI thongKeUI = new ThongKeUI();
             thongKeUI.setVisible(true);
             thongKeUI.pack();
-            this.dispose();
+            //this.dispose();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MenuNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
         }

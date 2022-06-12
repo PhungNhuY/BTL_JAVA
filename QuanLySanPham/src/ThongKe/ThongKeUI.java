@@ -165,10 +165,7 @@ public class ThongKeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
-        // TODO add your handling code here:
-        MenuAdminUI menu = new MenuAdminUI();
-        menu.pack();
-        menu.setVisible(true);
+
         this.dispose();
     }//GEN-LAST:event_btnQuayLai1ActionPerformed
 
