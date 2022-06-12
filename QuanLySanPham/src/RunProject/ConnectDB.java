@@ -254,7 +254,7 @@ public class ConnectDB {
                     + "SoDienThoai='" + tk.getSoDienThoai() + "',"
                     + "HoTen='" + tk.getHoTen() + "',"
                     + "NgaySinh='" + tk.getNgaySinh() + "',"
-                    + "Quyen='" + tk.getQuyen() + "' WHERE MaTaiKhoan='" + tk.getMaTaiKhoan() + "'";
+                    + "Quyen='" + tk.getQuyen() + "' WHERE MaTaiKhoan=" + tk.getMaTaiKhoan() ;
             st = conn.createStatement();
             st.executeUpdate(sql);
             return true;
@@ -411,5 +411,74 @@ public class ConnectDB {
         } catch (SQLException ex) {
         }
         return false;
+    }
+    
+    public ArrayList<TaiKhoanObject> timKiemTaiKhoan(String text){
+        ArrayList<TaiKhoanObject> result = new ArrayList<TaiKhoanObject>();
+        try {
+            String sql = "SELECT * FROM taikhoan WHERE HoTen LIKE '%"+text+"%'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                TaiKhoanObject tk = new TaiKhoanObject();
+                tk.setMaTaiKhoan(rs.getInt("MaTaiKhoan"));
+                tk.setTenDangNhap(rs.getString("TenDangNhap"));
+                tk.setMatKhau(rs.getString("MatKhau"));
+                tk.setHoTen(rs.getString("HoTen"));
+                tk.setSoDienThoai(rs.getString("SoDienThoai"));
+                tk.setNgaySinh(rs.getString("NgaySinh"));
+                tk.setQuyen(rs.getString("Quyen"));
+                result.add(tk);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    
+    public ArrayList<DanhMucObject> timKiemDanhMuc(String text){
+        ArrayList<DanhMucObject> result = new ArrayList<DanhMucObject>();
+        try {
+            String sql = "SELECT * FROM danhmuc WHERE TenDanhMuc LIKE '%"+text+"%'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                DanhMucObject temp = new DanhMucObject();
+                temp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
+                temp.setTenDanhMuc(rs.getString("TenDanhMuc"));
+                temp.setMoTa(rs.getString("MoTa"));
+                result.add(temp);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    
+    public ArrayList<SanPhamObject> timKiemSanPham(String text){
+        ArrayList<SanPhamObject> result = new ArrayList<SanPhamObject>();
+        try {
+            String sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%"+text+"%'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                SanPhamObject sp = new SanPhamObject();
+                sp.setMaSanPham(rs.getInt("MaSanPham"));
+                sp.setTenSanPham(rs.getString("TenSanPham"));
+                sp.setMaDanhMuc(rs.getInt("MaDanhMuc"));
+                sp.setDonViTinh(rs.getString("DonViTinh"));
+                sp.setSoLuong(rs.getInt("SoLuong"));
+                sp.setDonGia(rs.getInt("DonGia"));
+                sp.setKichCo(rs.getString("KichCo"));
+                sp.setMoTa(rs.getString("MoTa"));
+                result.add(sp);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }
