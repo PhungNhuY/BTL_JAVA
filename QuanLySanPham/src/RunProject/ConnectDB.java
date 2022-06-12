@@ -481,4 +481,29 @@ public class ConnectDB {
         }
         return result;
     }
+    
+    public TaiKhoanObject DangNhap(String taiKhoan, String matKhau){
+        TaiKhoanObject ans = new TaiKhoanObject();
+        ans.setMaTaiKhoan(-1);
+        ans.setQuyen("");
+        try {
+            String sql = "SELECT * FROM taikhoan WHERE TenDangNhap='"+taiKhoan+"' AND MatKhau='"+matKhau+"'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                TaiKhoanObject tk = new TaiKhoanObject();
+                tk.setMaTaiKhoan(rs.getInt("MaTaiKhoan"));
+                tk.setTenDangNhap(rs.getString("TenDangNhap"));
+                tk.setMatKhau(rs.getString("MatKhau"));
+                tk.setHoTen(rs.getString("HoTen"));
+                tk.setSoDienThoai(rs.getString("SoDienThoai"));
+                tk.setNgaySinh(rs.getString("NgaySinh"));
+                tk.setQuyen(rs.getString("Quyen"));
+                ans = tk;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ans;
+    }
 }

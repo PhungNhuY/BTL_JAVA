@@ -184,24 +184,18 @@ public class DangNhapUI extends javax.swing.JFrame {
         }
 
         //check tai khoan ton tai
-        String check = "";
-        ArrayList<TaiKhoanObject> dsTaiKhoan = connect.dsTaiKhoan();
-        for (TaiKhoanObject tk : dsTaiKhoan) {
-            if (tk.getTenDangNhap().equalsIgnoreCase(taiKhoan)
-                    && tk.getMatKhau().equals(matKhau)) {
-                check = tk.getQuyen();
-                try {
-                    FileWriter myWriter = new FileWriter("MaTaiKhoan.txt");
-                    myWriter.write(String.valueOf(tk.getMaTaiKhoan()));
-                    myWriter.close();
-                    System.out.println("Successfully wrote to the file.");
-                } catch (IOException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
-                }
-                break;
-            }
+        TaiKhoanObject acc = connect.DangNhap(taiKhoan, matKhau);
+        String check = acc.getQuyen();
+        try {
+            FileWriter myWriter = new FileWriter("MaTaiKhoan.txt");
+            myWriter.write(String.valueOf(acc.getMaTaiKhoan()));
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
+        
         if (check.equals("nhanvien")) {
             MenuNhanVienUI menuNhanVienUI = new MenuNhanVienUI();
             menuNhanVienUI.setVisible(true);
